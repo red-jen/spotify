@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Platform</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      @apply bg-gray-900 text-gray-200;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .gradient-bg {
+      background-image: linear-gradient(to right, #1db954, #191414);
+    }
+  </style>
+</head>
+<body>
+  <div class="flex h-screen">
+    <div class="bg-gray-800 px-4 py-6 flex flex-col justify-between">
+      <div>
+        <a href="#" class="flex items-center space-x-2 mb-6">
+          <svg class="h-8 w-8 text-green-500" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.78 9.7L11.22 15.28C10.93 15.59 10.47 15.59 10.18 15.28L7.22 12.32C6.93 12.03 6.93 11.57 7.22 11.28C7.51 10.99 7.97 10.99 8.26 11.28L10.72 13.74L15.74 8.72C16.03 8.43 16.49 8.43 16.78 8.72C17.07 9.01 17.07 9.41 16.78 9.7Z" fill="currentColor"/>
+          </svg>
+          <span class="text-2xl font-bold">Music Platform</span>
+        </a>
+        <nav class="space-y-4">
+          <a href="#" class="flex items-center space-x-2 hover:text-green-500">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z" fill="currentColor"/>
+              <path d="M12 7C10.34 7 9 8.34 9 10C9 11.66 10.34 13 12 13C13.66 13 15 11.66 15 10C15 8.34 13.66 7 12 7Z" fill="currentColor"/>
+            </svg>
+            <span>Home</span>
+          </a>
+          <a href="#" class="flex items-center space-x-2 hover:text-green-500">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 9H15V3H9V9H5L12 16L19 9ZM5 18V20H19V18H5Z" fill="currentColor"/>
+            </svg>
+            <span>Your Library</span>
+          </a>
+          <a href="#" class="flex items-center space-x-2 hover:text-green-500">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14 13H8V11H14V13ZM14 17H8V15H14V17ZM8 9H16V7H8V9ZM19 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3Z" fill="currentColor"/>
+            </svg>
+            <span>Browse</span>
+          </a>
+        </nav>
+      </div>
+      <div>
+        <a href="#" class="flex items-center space-x-2 hover:text-green-500">
+          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z" fill="currentColor"/>
+            <path d="M12 7C10.34 7 9 8.34 9 10C9 11.66 10.34 13 12 13C13.66 13 15 11.66 15 10C15 8.34 13.66 7 12 7Z" fill="currentColor"/>
+          </svg>
+          <span>Profile</span>
+        </a>
+      </div>
+    </div>
+    <div class="flex-1 gradient-bg p-6">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl font-bold mb-6">Recently Played</h2>
+        <div class="grid grid-cols-5 gap-6">
+          <div class="bg-gray-800 rounded-lg shadow-lg p-4">
+            <img src="https://i.pinimg.com/originals/44/cb/fb/44cbfbf76727caf912493a0cdf2203e3.jpg" alt="Album Cover" class="rounded-t-lg w-full h-48 object-cover">
+            <div class="mt-4">
+              <h3 class="text-xl font-bold">Album Title</h3>
+              <p class="text-gray-400">Artist Name</p>
+              <button class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded mt-4">Play</button>
+            </div>
+          </div>
+          <!-- Add more album cards here -->
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
