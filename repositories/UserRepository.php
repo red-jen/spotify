@@ -1,6 +1,5 @@
 <?php
-require_once('../model/Artist.php');
-require_once('../model/Player.php');
+
 class UserRepository {
     private $db;
 
@@ -46,7 +45,7 @@ class UserRepository {
         ]);
     }
 
-    private function createUserByRole($userData) {
+    public function createUserByRole($userData) {
         switch ($userData['role']) {
             case 'user':
                 return new Player(

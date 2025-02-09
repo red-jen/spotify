@@ -1,0 +1,37 @@
+<?php
+// repositories/SongRepository.php
+class SongRepository {
+    private $db;
+    
+    public function __construct($db) {
+        $this->db = $db;
+    }
+    
+    public function createSong($title, $artistId, $albumId, $duration, $filePath, $genre = null) {
+        $stmt = $this->db->prepare(
+            "INSERT INTO songs (title, artist_id, album_id, duration, file_path, genre) 
+             VALUES (:title, :artist_id, :album_id, :duration, :file_path, :genre)
+             RETURNING id"
+        );
+        
+        $stmt->execute([
+            'title' => $title,
+            'artist_id' => $artistId,
+            'album_id' => $albumId,
+            'duration' => $duration,
+            'file_path' => $filePath,
+            'genre' => $genre
+        ]);
+        
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return new Song(
+            $result['id'],
+            $title,
+            $artistId,
+            $albumId,
+            $duration,
+            $filePath,
+            $genre
+        );
+    }
+}

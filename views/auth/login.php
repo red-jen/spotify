@@ -9,7 +9,7 @@
         <div style="color: red;"><?php echo $error; ?></div>
     <?php endif; ?>
     
-    <form method="POST" action="login">
+    <form method="POST" action="/login">
         <div>
             <label>Email:</label>
             <input type="email" name="email" required>

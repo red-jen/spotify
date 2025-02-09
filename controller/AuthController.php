@@ -1,6 +1,6 @@
 <?php
 
-require_once('../reposetries/userReposetrie.php');
+
 class AuthController {
     private $userRepository;
 
@@ -30,27 +30,27 @@ class AuthController {
                 $user = $this->userRepository->findByEmail($email);
                 
                 if ($user && password_verify($password, $user->getPassword())) {
-                    $_SESSION['user'] = $this->userRepository->createUserByRole($user);
+                    $_SESSION['user'] = serialize($user);
 
                 
                     
                     // Redirect to viewer index
-                    header('Location: viewer/index.htm');
+                    header('Location: views/home.php');
                     exit;
                 }
                 
                 $error = 'Invalid credentials';
-                include 'viewer/login.php';
+                include 'views/auth/login.php';
                 exit;
             } catch (Exception $e) {
                 $error = 'Login failed: ' . $e->getMessage();
-                include 'viewer/login.php';
+                include 'views/auth/login.php';
                 exit;
             }
         }
         
         // Show login form for GET request
-        include 'viewer/login.php';
+        include 'views/auth/login.php';
     }
 
     public function register() {
