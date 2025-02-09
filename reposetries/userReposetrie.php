@@ -1,5 +1,6 @@
 <?php
-
+require_once('../model/Artist.php');
+require_once('../model/Player.php');
 class UserRepository {
     private $db;
 
@@ -47,21 +48,33 @@ class UserRepository {
 
     private function createUserByRole($userData) {
         switch ($userData['role']) {
+            case 'user':
+                return new Player(
+                    $userData['id'],
+                    $userData['username'],
+                    $userData['email'],
+                    $userData['password_hash']
+                );
             case 'artist':
                 return new Artist(
                     $userData['id'],
                     $userData['username'],
                     $userData['email'],
-                    $userData['password_hash'],
-                    $userData['created_at']
+                    $userData['password_hash']
                 );
+                case 'admin':
+                    return new Admin(
+                        $userData['id'],
+                        $userData['username'],
+                        $userData['email'],
+                        $userData['password_hash']
+                    );
             default:
-                return new RegisteredUser(
+                return new Player(
                     $userData['id'],
                     $userData['username'],
                     $userData['email'],
-                    $userData['password_hash'],
-                    $userData['created_at']
+                    $userData['password_hash']
                 );
         }
     }

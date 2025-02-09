@@ -1,4 +1,6 @@
 <?php
+
+require_once('../reposetries/userReposetrie.php');
 class AuthController {
     private $userRepository;
 
@@ -7,7 +9,57 @@ class AuthController {
         $this->userRepository = new UserRepository($db);
     }
 
+    public function login() {
+        // Start session if not already started
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        // If POST request, process login
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $email = $_POST['email'] ?? '';
+            $password = $_POST['password'] ?? '';
+
+            if (empty($email) || empty($password)) {
+                $error = 'All fields are required';
+                include 'viewer/login.php';
+                exit;
+            }
+
+            try {
+                $user = $this->userRepository->findByEmail($email);
+                
+                if ($user && password_verify($password, $user->getPassword())) {
+                    $_SESSION['user'] = $this->userRepository->createUserByRole($user);
+
+                
+                    
+                    // Redirect to viewer index
+                    header('Location: viewer/index.htm');
+                    exit;
+                }
+                
+                $error = 'Invalid credentials';
+                include 'viewer/login.php';
+                exit;
+            } catch (Exception $e) {
+                $error = 'Login failed: ' . $e->getMessage();
+                include 'viewer/login.php';
+                exit;
+            }
+        }
+        
+        // Show login form for GET request
+        include 'viewer/login.php';
+    }
+
     public function register() {
+        // Start session if not already started
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        // If POST request, process registration
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = $_POST['username'] ?? '';
             $email = $_POST['email'] ?? '';
@@ -16,68 +68,52 @@ class AuthController {
 
             // Validation
             if (empty($username) || empty($email) || empty($password)) {
-                return ['error' => 'All fields are required'];
+                $error = 'All fields are required';
+                include 'viewer/register.php';
+                exit;
             }
 
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                return ['error' => 'Invalid email format'];
+                $error = 'Invalid email format';
+                include 'viewer/register.php';
+                exit;
             }
 
             try {
                 $user = $this->userRepository->createUser($username, $email, $password, $role);
-                session_start();
+                
                 $_SESSION['user_id'] = $user->getId();
                 $_SESSION['role'] = $user->getRole();
                 
-                header('Location: /dashboard');
+                // Redirect to viewer index
+                header('Location: viewer/index.htm');
                 exit;
             } catch (PDOException $e) {
-                if (strpos($e->getMessage(), 'unique constraint')) {
-                    return ['error' => 'Email or username already exists'];
-                }
-                return ['error' => 'Registration failed'];
+                $error = (strpos($e->getMessage(), 'unique constraint')) 
+                    ? 'Email or username already exists' 
+                    : 'Registration failed';
+                
+                include 'viewer/register.php';
+                exit;
             }
         }
         
-        // Show registration form
-        require 'views/auth/register.php';
-    }
-
-    public function login() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $email = $_POST['email'] ?? '';
-            $password = $_POST['password'] ?? '';
-
-            if (empty($email) || empty($password)) {
-                return ['error' => 'All fields are required'];
-            }
-
-            try {
-                $user = $this->userRepository->findByEmail($email);
-                
-                if ($user && password_verify($password, $user->getPassword())) {
-                    session_start();
-                    $_SESSION['user_id'] = $user->getId();
-                    $_SESSION['role'] = $user->getRole();
-                    
-                    header('Location: /dashboard');
-                    exit;
-                }
-                
-                return ['error' => 'Invalid credentials'];
-            } catch (Exception $e) {
-                return ['error' => 'Login failed'];
-            }
-        }
-        
-        // Show login form
-        require 'views/auth/login.php';
+        // Show registration form for GET request
+        include 'viewer/register.php';
     }
 
     public function logout() {
-        session_start();
+        // Start session if not already started
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        // Destroy session
+        $_SESSION = array();
         session_destroy();
-        header('Location: /login');
+
+        // Redirect to login
+        header('Location: login');
         exit;
     }
 }
