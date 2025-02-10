@@ -24,6 +24,8 @@ $routes = [
     'logout' => ['controller' => 'AuthController', 'action' => 'logout'],
     'artist' => ['controller' => 'ArtistController', 'action' => 'index'],
     'admin' => ['controller' => 'AdminController', 'action' => 'index'],
+    'artist/create-song' => ['controller' => 'ArtistController', 'action' => 'createSong'],
+    'artist/create-album' => ['controller' => 'ArtistController', 'action' => 'createAlbum'],
     '' => ['controller' => 'AuthController', 'action' => 'login']  // default route
 ];
 
