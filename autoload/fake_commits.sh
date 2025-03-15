@@ -1,15 +1,13 @@
-#!/bin/bash
 
-# Ensure the script exits on any error
 set -e
 
-# Define the repository directory
-REPO_DIR="C:\Users\youco\OneDrive\Bureau\sprint 5"
 
-# Navigate to the repository directory
+REPO_DIR="C:\Users\youco\OneDrive\Bureau\sprint 5\spotify"
+
+
 cd "$REPO_DIR"
 
-# List of Jira tasks (commit messages)
+
 TASKS=(
   "EPIC-1: Project Foundation & Authentication"
   "WALL-1.1: Create user tables migrations"
@@ -28,7 +26,7 @@ TASKS=(
   "WALL-13.1: Create star rating system"
 )
 
-# Function to generate a random date between two dates
+
 generate_random_date() {
   local start_date="2025-03-15"
   local end_date="2025-05-01"
@@ -38,7 +36,7 @@ generate_random_date() {
   date -d "@$random_ts" +"%Y-%m-%dT%H:%M:%S"
 }
 
-# Loop through tasks and create commits
+
 for TASK in "${TASKS[@]}"; do
   RANDOM_DATE=$(generate_random_date)
   echo "Fake commit for task: $TASK" > dummy_file_${TASK//[^a-zA-Z0-9]/_}.txt
@@ -49,5 +47,3 @@ for TASK in "${TASKS[@]}"; do
   git commit -m "$TASK"
 done
 
-# Push changes (optional; ensure you have the right access)
-# git push origin main
