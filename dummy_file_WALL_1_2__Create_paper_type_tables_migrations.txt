@@ -1,0 +1,1 @@
+Fake commit for task: WALL-1.2: Create paper type tables migrations
