@@ -15,10 +15,10 @@ class Autoloader {
                 'Exception' => 'exceptions'
             ];
             
-            // Try to determine the type and directory from the class name
+            // Try to determine the type and directory from the class na
             $directory = null;
             foreach ($dirMapping as $type => $dir) {
-                if (strpos($className, $type) !== false) {
+                if (strpos($className, $type) !== false) { 
                     $directory = $dir;
                     break;
                 }
