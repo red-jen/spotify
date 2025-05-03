@@ -48,3 +48,4 @@ class AdminController {
         return isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
     }
 }
+// Added dummy PHP comment for testing
