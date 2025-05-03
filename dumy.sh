@@ -1,4 +1,6 @@
+#!/bin/bash
 
+# Ensure script exits on errors
 set -e
 
 # Define the repository directory
