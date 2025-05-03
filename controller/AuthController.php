@@ -117,3 +117,4 @@ class AuthController {
         exit;
     }
 }// Added dummy PHP comment for testing
+// Added dummy PHP comment for testing
