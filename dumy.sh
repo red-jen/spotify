@@ -25,13 +25,33 @@ create_commit() {
     
     # Create the commit with the specified date
     GIT_AUTHOR_DATE="$commit_date" GIT_COMMITTER_DATE="$commit_date" \
-    git commit -m "$commit_message" --author="red-jen <red-jen@example.com>"
+    git commit -m "[SPOTI] $commit_message" --author="red-jen <red-jen@example.com>"
     
-    echo "Created commit: $commit_message on $commit_date"
+    echo "Created commit: [SPOTI] $commit_message on $commit_date"
 }
 
+# Define unique dates for each commit (in chronological order)
+dates=(
+    "2025-03-16 09:24:15"
+    "2025-03-19 14:37:22"
+    "2025-03-22 11:08:43"
+    "2025-03-25 16:52:10"
+    "2025-03-28 08:15:33"
+    "2025-03-31 13:45:09"
+    "2025-04-03 10:22:47"
+    "2025-04-06 15:11:05"
+    "2025-04-09 09:38:21"
+    "2025-04-12 14:05:56"
+    "2025-04-15 11:49:33"
+    "2025-04-18 16:27:08"
+    "2025-04-21 08:59:42"
+    "2025-04-24 13:36:19"
+    "2025-04-27 10:14:55"
+    "2025-04-30 15:43:28"
+)
+
 # WALL-6: Design Upload & Management
-create_commit "2025-03-18 10:15:30" "WALL-6.1: Create design upload form" \
+create_commit "${dates[0]}" "WALL-6.1: Create design upload form" \
     "resources/views/designer/upload.blade.php" \
     "@extends('layouts.app')
 @section('content')
@@ -48,7 +68,7 @@ create_commit "2025-03-18 10:15:30" "WALL-6.1: Create design upload form" \
 </div>
 @endsection"
 
-create_commit "2025-03-22 14:30:45" "WALL-6.2: Implement image processing and validation" \
+create_commit "${dates[1]}" "WALL-6.2: Implement image processing and validation" \
     "app/Http/Controllers/DesignController.php" \
     "<?php
 
@@ -89,7 +109,7 @@ class DesignController extends Controller
     }
 }"
 
-create_commit "2025-03-27 09:45:20" "WALL-6.3: Create design metadata form" \
+create_commit "${dates[2]}" "WALL-6.3: Create design metadata form" \
     "resources/views/designer/metadata.blade.php" \
     "@extends('layouts.app')
 @section('content')
@@ -119,7 +139,7 @@ create_commit "2025-03-27 09:45:20" "WALL-6.3: Create design metadata form" \
 </div>
 @endsection"
 
-create_commit "2025-04-02 11:20:15" "WALL-6.4: Implement category and tag assignment" \
+create_commit "${dates[3]}" "WALL-6.4: Implement category and tag assignment" \
     "resources/views/designer/categories.blade.php" \
     "@extends('layouts.app')
 @section('content')
@@ -156,7 +176,7 @@ create_commit "2025-04-02 11:20:15" "WALL-6.4: Implement category and tag assign
 </div>
 @endsection"
 
-create_commit "2025-04-07 16:35:40" "WALL-6.5: Create design listing page for designers" \
+create_commit "${dates[4]}" "WALL-6.5: Create design listing page for designers" \
     "resources/views/designer/designs/index.blade.php" \
     "@extends('layouts.app')
 @section('content')
@@ -200,7 +220,7 @@ create_commit "2025-04-07 16:35:40" "WALL-6.5: Create design listing page for de
 </div>
 @endsection"
 
-create_commit "2025-04-11 13:25:10" "WALL-6.6: Implement design edit functionality" \
+create_commit "${dates[5]}" "WALL-6.6: Implement design edit functionality" \
     "app/Http/Controllers/DesignController.php" \
     "<?php
 
@@ -275,7 +295,7 @@ class DesignController extends Controller
     }
 }"
 
-create_commit "2025-04-15 09:10:30" "WALL-6.7: Create design delete confirmation" \
+create_commit "${dates[6]}" "WALL-6.7: Create design delete confirmation" \
     "resources/views/designer/designs/delete.blade.php" \
     "@extends('layouts.app')
 @section('content')
@@ -322,7 +342,7 @@ create_commit "2025-04-15 09:10:30" "WALL-6.7: Create design delete confirmation
 </div>
 @endsection"
 
-create_commit "2025-04-18 14:55:25" "WALL-6.8: Implement design status toggle" \
+create_commit "${dates[7]}" "WALL-6.8: Implement design status toggle" \
     "app/Http/Controllers/DesignStatusController.php" \
     "<?php
 
@@ -348,7 +368,7 @@ class DesignStatusController extends Controller
     }
 }"
 
-create_commit "2025-04-22 11:40:15" "WALL-6.9: Create paper type compatibility selection" \
+create_commit "${dates[8]}" "WALL-6.9: Create paper type compatibility selection" \
     "resources/views/designer/designs/compatibility.blade.php" \
     "@extends('layouts.app')
 @section('content')
@@ -395,7 +415,7 @@ create_commit "2025-04-22 11:40:15" "WALL-6.9: Create paper type compatibility s
 </div>
 @endsection"
 
-create_commit "2025-04-24 10:15:45" "WALL-7.1: Create dashboard layout with statistics" \
+create_commit "${dates[9]}" "WALL-7.1: Create dashboard layout with statistics" \
     "resources/views/designer/dashboard.blade.php" \
     "@extends('layouts.app')
 @section('content')
@@ -498,7 +518,7 @@ create_commit "2025-04-24 10:15:45" "WALL-7.1: Create dashboard layout with stat
 </div>
 @endsection"
 
-create_commit "2025-04-25 16:30:20" "WALL-7.2: Implement sales overview widget" \
+create_commit "${dates[10]}" "WALL-7.2: Implement sales overview widget" \
     "resources/views/designer/widgets/sales-overview.blade.php" \
     "@extends('designer.widgets.base')
 @section('widget_content')
@@ -577,7 +597,7 @@ document.addEventListener('DOMContentLoaded', function() {
 @endpush
 @endsection"
 
-create_commit "2025-04-27 11:10:35" "WALL-7.3: Create recent orders display" \
+create_commit "${dates[11]}" "WALL-7.3: Create recent orders display" \
     "resources/views/designer/orders/recent.blade.php" \
     "@extends('layouts.app')
 @section('content')
@@ -674,7 +694,7 @@ create_commit "2025-04-27 11:10:35" "WALL-7.3: Create recent orders display" \
 </div>
 @endsection"
 
-create_commit "2025-04-28 14:20:50" "WALL-7.4: Implement earnings summary report" \
+create_commit "${dates[12]}" "WALL-7.4: Implement earnings summary report" \
     "app/Http/Controllers/DesignerEarningsController.php" \
     "<?php
 
@@ -795,7 +815,7 @@ class DesignerEarningsController extends Controller
     }
 }"
 
-create_commit "2025-04-29 09:45:20" "WALL-7.5: Create customer interaction notifications" \
+create_commit "${dates[13]}" "WALL-7.5: Create customer interaction notifications" \
     "app/Notifications/CustomerInteractionNotification.php" \
     "<?php
 
@@ -899,7 +919,7 @@ class CustomerInteractionNotification extends Notification implements ShouldQueu
     }
 }"
 
-create_commit "2025-04-30 15:35:40" "WALL-7.6: Implement popular designs analytics" \
+create_commit "${dates[14]}" "WALL-7.6: Implement popular designs analytics" \
     "app/Http/Controllers/DesignerAnalyticsController.php" \
     "<?php
 
@@ -1056,7 +1076,7 @@ class DesignerAnalyticsController extends Controller
     }
 }"
 
-create_commit "2025-05-01 10:25:15" "WALL-7.7: Create sales data export functionality" \
+create_commit "${dates[15]}" "WALL-7.7: Create sales data export functionality" \
     "app/Exports/SalesDataExport.php" \
     "<?php
 
@@ -1175,4 +1195,4 @@ class SalesDataExport implements FromCollection, WithHeadings, WithMapping, With
 "
 
 # Push all commits
-echo "All commits have been created successfully!"
+echo "All commits have been created successfully with SPOTI naming and unique dates!"
