@@ -116,4 +116,4 @@ class AuthController {
         header('Location: login');
         exit;
     }
-}
+}// Added dummy PHP comment for testing
