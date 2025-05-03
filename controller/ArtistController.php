@@ -115,3 +115,4 @@ class ArtistController {
         }
     }
 }// Added dummy PHP comment for testing
+// Added dummy PHP comment for testing
