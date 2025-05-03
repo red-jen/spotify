@@ -11,10 +11,10 @@ cd "$REPO_DIR"
 
 # List of files to modify (replace with actual file paths in your repo)
 FILES=(
-  "assets/styles/main.css"
-  "src/controllers/UserController.php"
-  "scripts/setup.sh"
-  "scripts/deploy.ps1"
+  "controller/AdminController.php"
+  "controller/AuthController.php"
+  "controller/ArtistController.php"
+  "repositories/AlbumRepository.php"
 )
 
 # List of Jira tasks for commit messages
