@@ -29,4 +29,4 @@ class AlbumRepository {
             $coverImage
         );
     }
-}
+}// Added dummy PHP comment for testing
