@@ -114,4 +114,4 @@ class ArtistController {
             include 'views/artist/create-album.php';
         }
     }
-}
+}// Added dummy PHP comment for testing
